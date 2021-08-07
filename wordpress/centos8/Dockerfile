@@ -1,7 +1,9 @@
 # Copyright (C) 2021 Intel Corporation
 # SPDX-License-Identifier: Apache-2.0
 
-FROM centos:centos8.3.2011 AS compile-stage
+# lo anterior que tenia era centos:centos8.3.2011
+
+FROM centos:stream8 AS compile-stage
 
 RUN dnf -y install epel-release && \
     dnf -y update && \
@@ -16,6 +18,8 @@ RUN dnf -y install epel-release && \
 
 RUN wget https://www.nasm.us/pub/nasm/releasebuilds/2.15.02/linux/nasm-2.15.02-0.fc31.x86_64.rpm && \
     rpm -i nasm-2.15.02-0.fc31.x86_64.rpm
+#RUN dnf -y install dnf-plugins-core
+
 
 ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
 RUN git clone -b $OPENSSL_RELEASE https://github.com/openssl/openssl.git
@@ -74,7 +78,8 @@ RUN git clone -b $ASYNC_NGINX_VERSION https://github.com/intel/asynch_mode_nginx
     make && \
     make install
 
-FROM centos:centos8.3.2011 AS runnable
+#lo de antes centos:centos8.3.2011
+FROM centos:stream8 AS runnable
 
 COPY --from=compile-stage /usr/local/ /usr/local/
 COPY --from=compile-stage /var/www/ /var/www/
