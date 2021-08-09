@@ -16,9 +16,7 @@ RUN dnf -y install epel-release && \
       pcre \
       pcre-devel
 
-RUN wget https://www.nasm.us/pub/nasm/releasebuilds/2.15.02/linux/nasm-2.15.02-0.fc31.x86_64.rpm && \
-    rpm -i nasm-2.15.02-0.fc31.x86_64.rpm
-#RUN dnf -y install dnf-plugins-core
+RUN dnf --enablerepo=powertools install nasm
 
 
 ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
