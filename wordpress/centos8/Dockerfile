@@ -3,7 +3,7 @@
 
 # lo anterior que tenia era centos:centos8.3.2011
 
-FROM centos:stream8 AS compile-stage
+FROM quay.io/centos/centos:stream8 AS compile-stage
 
 RUN dnf -y install epel-release && \
     dnf -y update && \
@@ -79,7 +79,7 @@ RUN git clone -b $ASYNC_NGINX_VERSION https://github.com/intel/asynch_mode_nginx
     make install
 
 #lo de antes centos:centos8.3.2011
-FROM centos:stream8 AS runnable
+FROM quay.io/centos/centos:stream8 AS runnable
 
 COPY --from=compile-stage /usr/local/ /usr/local/
 COPY --from=compile-stage /var/www/ /var/www/
