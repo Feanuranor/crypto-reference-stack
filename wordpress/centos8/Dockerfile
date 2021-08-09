@@ -22,7 +22,7 @@ RUN wget https://www.nasm.us/pub/nasm/releasebuilds/2.15.02/linux/nasm-2.15.02-0
 
 
 ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
-RUN git clone -b $OPENSSL_RELEASE https://github.com/openssl/openssl.git
+RUN git clone https://github.com/openssl/openssl.git
 RUN cd /openssl && \
     ./config && \
     make depend && \
@@ -30,7 +30,7 @@ RUN cd /openssl && \
     make install_sw
 
 ARG IPP_CRYPTO_VERSION="ippcp_2020u3"
-RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto && \
+RUN git clone https://github.com/intel/ipp-crypto && \
     cd /ipp-crypto/sources/ippcp/crypto_mb && \
     cmake . -B"../build" \
       -DOPENSSL_INCLUDE_DIR=/usr/local/include/openssl \
@@ -41,13 +41,13 @@ RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto && \
     make install
 
 ARG IPSEC_MB_VERSION="v0.55"
-RUN git clone -b $IPSEC_MB_VERSION https://github.com/intel/intel-ipsec-mb && \
+RUN git clone https://github.com/intel/intel-ipsec-mb && \
     cd /intel-ipsec-mb && \
     make -j SAFE_DATA=y SAFE_PARAM=y SAFE_LOOKUP=y && \
     make install NOLDCONFIG=y PREFIX=/usr/local/
 
 ARG QAT_ENGINE_VERSION="v0.6.5"
-RUN git clone -b $QAT_ENGINE_VERSION https://github.com/intel/QAT_Engine.git && \
+RUN git clone https://github.com/intel/QAT_Engine.git && \
     cd /QAT_Engine && \
     ./autogen.sh && \
     ./configure \
