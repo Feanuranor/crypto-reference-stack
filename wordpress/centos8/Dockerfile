@@ -16,7 +16,8 @@ RUN dnf -y install epel-release && \
       pcre \
       pcre-devel
 
-RUN dnf --enablerepo=powertools install nasm
+#el -y asume yes en todo
+RUN dnf -y --enablerepo=powertools install nasm
 
 
 ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
