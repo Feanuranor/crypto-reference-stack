@@ -24,7 +24,6 @@ ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
 RUN git clone https://github.com/openssl/openssl.git
 RUN cd /openssl && \
     ./Configure [enable-ec_nistp_64_gcc_128] && \
-    make depend && \
     make && \
     make install_sw
 
