@@ -42,7 +42,7 @@ ARG IPSEC_MB_VERSION="v1.0"
 RUN git clone -b $IPSEC_MB_VERSION https://github.com/intel/intel-ipsec-mb.git && \
     cd /intel-ipsec-mb && \
     make -j SAFE_DATA=n SAFE_PARAM=n SAFE_LOOKUP=n && \
-    make install NOLDCONFIG=y PREFIX=/usr/local/
+    sudo make install NOLDCONFIG=y PREFIX=/usr/local/
 
 ARG QAT_ENGINE_VERSION="v0.6.7"
 RUN git clone -b $QAT_ENGINE_VERSION https://github.com/intel/QAT_Engine.git && \
