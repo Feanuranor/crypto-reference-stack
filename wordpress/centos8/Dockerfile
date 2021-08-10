@@ -18,7 +18,7 @@ RUN dnf -y install epel-release && \
 
 #el -y asume yes en todo
 RUN dnf -y --enablerepo=powertools install nasm
-
+RUN dnf -y install perl-IPC-Cmd
 
 ARG OPENSSL_RELEASE="OpenSSL_1_1_1j"
 RUN git clone https://github.com/openssl/openssl.git
