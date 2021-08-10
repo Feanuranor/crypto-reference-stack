@@ -28,7 +28,7 @@ RUN cd /openssl && \
     make install_sw
 
 ARG IPP_CRYPTO_VERSION="ippcp_2021.3"
-RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto && \
+RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto.git && \
     cd /ipp-crypto/sources/ippcp/crypto_mb && \
     cmake . -B"../build" \
       -DOPENSSL_INCLUDE_DIR=/usr/local/include/openssl \
@@ -38,14 +38,14 @@ RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto && \
     make crypto_mb && \
     make install
 
-ARG IPSEC_MB_VERSION="v0.55"
-RUN git clone https://github.com/intel/intel-ipsec-mb && \
+ARG IPSEC_MB_VERSION="v1.0"
+RUN git clone -b $IPSEC_MB_VERSION https://github.com/intel/intel-ipsec-mb.git && \
     cd /intel-ipsec-mb && \
     make -j SAFE_DATA=y SAFE_PARAM=y SAFE_LOOKUP=y && \
     make install NOLDCONFIG=y PREFIX=/usr/local/
 
-ARG QAT_ENGINE_VERSION="v0.6.5"
-RUN git clone https://github.com/intel/QAT_Engine.git && \
+ARG QAT_ENGINE_VERSION="v0.6.7"
+RUN git clone -b $QAT_ENGINE_VERSION https://github.com/intel/QAT_Engine.git && \
     cd /QAT_Engine && \
     ./autogen.sh && \
     ./configure \
