@@ -41,7 +41,7 @@ RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto.git && 
 ARG IPSEC_MB_VERSION="v1.0"
 RUN git clone -b $IPSEC_MB_VERSION https://github.com/intel/intel-ipsec-mb && \
     cd /intel-ipsec-mb && \
-    make -j SAFE_DATA=y SAFE_PARAM=y SAFE_LOOKUP=y && \
+    make -j 2 SAFE_DATA=y SAFE_PARAM=y SAFE_LOOKUP=y && \
     make install NOLDCONFIG=y PREFIX=/usr/local/
 
 ARG QAT_ENGINE_VERSION="v0.6.7"
