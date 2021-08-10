@@ -27,8 +27,8 @@ RUN cd /openssl && \
     make && \
     make install_sw
 
-ARG IPP_CRYPTO_VERSION="ippcp_2020u3"
-RUN git clone https://github.com/intel/ipp-crypto && \
+ARG IPP_CRYPTO_VERSION="ippcp_2021.3"
+RUN git clone -b $IPP_CRYPTO_VERSION https://github.com/intel/ipp-crypto && \
     cd /ipp-crypto/sources/ippcp/crypto_mb && \
     cmake . -B"../build" \
       -DOPENSSL_INCLUDE_DIR=/usr/local/include/openssl \
