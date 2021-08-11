@@ -52,7 +52,7 @@ services:
       - SSL_ASYNC=${SSL_ASYNC:-off}
       - NGINX_WP=${NGINX_WP:-2}
       - NGINX_CIPHER=${NGINX_CIPHER:-TLS_AES_256_GCM_SHA384:ECDH:ECDSA:secp384r1}
-      - NGINX_HTTP=${NGINX_HTTP:-0}
+      - NGINX_HTTP=${NGINX_HTTP:-1}
     ports:
       - "8080:8080"
       - "8443:8443"
